@@ -1,0 +1,541 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: UberMove, UberMoveText, system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 12px 40px;
+  height: 96px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 16px;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 500;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.delivery-toggle {
+  display: flex;
+  background: #f6f6f6;
+  border-radius: 15px;
+  padding: 4px;
+  margin-right: 24px;
+}
+
+.toggle-btn {
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.toggle-btn.active {
+  background: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.location-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.location-text {
+  font-size: 14px;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  margin-right: 24px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border-radius: 15px;
+  border: none;
+  background: #f6f6f6;
+  font-size: 16px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.cart-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #06c167;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.categories {
+  padding: 24px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+}
+
+.category-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.category-name {
+  font-size: 14px;
+  color: #545454;
+}
+
+.filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #f6f6f6;
+}
+
+.filter-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.hero-section {
+  padding: 60px 40px;
+  background: #ffffff;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-left {
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 64px;
+  margin-bottom: 24px;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: #545454;
+  margin-bottom: 32px;
+}
+
+.promo-card {
+  background: #fef8e7;
+  padding: 24px;
+  border-radius: 16px;
+  margin-left: 40px;
+  max-width: 400px;
+}
+
+.promo-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.promo-cta {
+  display: inline-block;
+  margin-top: 16px;
+  color: #000;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.promo-image {
+  width: 150px;
+  height: 150px;
+  float: right;
+  margin-left: 20px;
+  border-radius: 12px;
+}
+
+.establishments-section {
+  padding: 40px;
+  min-height: 400px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-illustration {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avocado {
+  width: 120px;
+  height: 160px;
+  background: linear-gradient(135deg, #90ee90 0%, #50c878 100%);
+  border-radius: 50% 50% 50% 20%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.avocado::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  background: #228b22;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.seed {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  border-radius: 50%;
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.empty-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.empty-message {
+  font-size: 16px;
+  color: #545454;
+  margin-bottom: 32px;
+}
+
+.retry-btn {
+  background: #000000;
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 200px;
+  transition: background 0.2s;
+}
+
+.retry-btn:hover {
+  background: #333333;
+}
+
+.page-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #06c167;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.page-toggle:hover {
+  background: #05a759;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.restaurant-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #ffb3ba, #baffc9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.restaurant-info {
+  padding: 16px;
+}
+
+.restaurant-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.restaurant-address {
+  font-size: 14px;
+  color: #545454;
+  margin-bottom: 8px;
+}
+
+.restaurant-hours {
+  font-size: 14px;
+  color: #06c167;
+}
+
+.auth-btn {
+  background: #06c167;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 16px;
+  transition: background 0.2s;
+}
+
+.auth-btn:hover {
+  background: #05a759;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #06c167;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: #05a759;
+}
+
+.switch-modal {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #545454;
+}
+
+.switch-modal a {
+  color: #06c167;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Page non trouvée - FoodExpress</title>
+      <link rel="stylesheet" href="/css/common.css">
+      <style>
+            .error-page {
+                  min-height: calc(100vh - 96px);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  background: linear-gradient(135deg, #ffb3ba 0%, #baffc9 50%, #bae1ff 100%);
+            }
+
+            .error-content {
+                  text-align: center;
+                  padding: 48px;
+                  background-color: white;
+                  border-radius: 24px;
+                  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                  max-width: 600px;
+            }
+
+            .error-code {
+                  font-size: 120px;
+                  font-weight: 700;
+                  background: linear-gradient(135deg, #ff6b7a, #06c167, #0099ff);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                  margin-bottom: 24px;
+            }
+
+            .error-title {
+                  font-size: 36px;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+            }
+
+            .error-message {
+                  font-size: 18px;
+                  color: #545454;
+                  margin-bottom: 32px;
+            }
+
+            .error-icon {
+                  font-size: 80px;
+                  margin-bottom: 24px;
+                  animation: bounce 2s infinite;
+            }
+
+            @keyframes bounce {
+
+                  0%,
+                  100% {
+                        transform: translateY(0);
+                  }
+
+                  50% {
+                        transform: translateY(-20px);
+                  }
+            }
+      </style>
+</head>
+
+<body>
+      <div id="header-placeholder"></div>
+
+      <div class="error-page">
+            <div class="error-content">
+                  <div class="error-icon">🍕</div>
+                  <div class="error-code">404</div>
+                  <h1 class="error-title">Oups ! Page non trouvée</h1>
+                  <p class="error-message">
+                        La page que vous recherchez semble avoir été livrée à la mauvaise adresse !
+                  </p>
+                  <a href="/" class="auth-btn">Retour à l'accueil</a>
+            </div>
+      </div>
+
+      <script src="/js/header.js"></script>
+</body>
+
+</html>

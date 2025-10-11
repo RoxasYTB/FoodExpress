@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mes Commandes - FoodExpress</title>
+      <link rel="stylesheet" href="/css/common.css">
+      <link rel="stylesheet" href="/css/styles.css">
+      <link rel="stylesheet" href="/css/orders.css">
+</head>
+
+<body>
+      <div id="header-placeholder"></div>
+
+      <main class="main-content" style="margin: 100px;">
+            <div class="container">
+                  <div class="orders-header">
+                        <h1>Mes Commandes</h1>
+                        <div class="orders-tabs">
+                              <button class="tab-btn active" data-tab="all">Toutes</button>
+                              <button class="tab-btn" data-tab="ongoing">En cours</button>
+                              <button class="tab-btn" data-tab="completed">Terminées</button>
+                        </div>
+                  </div>
+
+                  <div class="orders-list" id="ordersList">
+                  </div>
+            </div>
+      </main>
+
+      <script src="/js/header.js"></script>
+      <script src="/js/orders.js"></script>
+</body>
+
+</html>

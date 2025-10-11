@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Restaurant - FoodExpress</title>
+      <link rel="stylesheet" href="/css/common.css">
+      <style>
+            .restaurant-header {
+                  background: linear-gradient(135deg, #ffb3ba 0%, #baffc9 50%, #bae1ff 100%);
+                  padding: 60px 40px;
+            }
+
+            .restaurant-info {
+                  max-width: 1200px;
+                  margin: 0 auto;
+                  background: white;
+                  padding: 32px;
+                  border-radius: 16px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .restaurant-name {
+                  font-size: 48px;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+            }
+
+            .restaurant-details {
+                  display: flex;
+                  gap: 32px;
+                  color: #545454;
+                  font-size: 16px;
+            }
+
+            .detail-item {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+            }
+
+            .menus-section {
+                  max-width: 1200px;
+                  margin: 40px auto;
+                  padding: 0 40px;
+            }
+
+            .section-title {
+                  font-size: 32px;
+                  font-weight: 700;
+                  margin-bottom: 32px;
+            }
+
+            .category-section {
+                  margin-bottom: 48px;
+            }
+
+            .category-title {
+                  font-size: 24px;
+                  font-weight: 600;
+                  margin-bottom: 24px;
+                  padding-bottom: 12px;
+                  border-bottom: 2px solid #e0e0e0;
+            }
+
+            .menu-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                  gap: 24px;
+            }
+
+            .menu-card {
+                  background: white;
+                  border-radius: 12px;
+                  padding: 24px;
+                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                  transition: all 0.3s;
+                  cursor: pointer;
+            }
+
+            .menu-card:hover {
+                  transform: translateY(-4px);
+                  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+
+            .menu-name {
+                  font-size: 20px;
+                  font-weight: 600;
+                  margin-bottom: 8px;
+            }
+
+            .menu-description {
+                  color: #545454;
+                  font-size: 14px;
+                  margin-bottom: 16px;
+                  line-height: 1.5;
+            }
+
+            .menu-footer {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+            }
+
+            .menu-price {
+                  font-size: 24px;
+                  font-weight: 700;
+                  color: #06c167;
+            }
+
+            .add-to-cart-btn {
+                  background: #06c167;
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  border-radius: 8px;
+                  cursor: pointer;
+                  font-weight: 500;
+                  transition: background 0.2s;
+            }
+
+            .add-to-cart-btn:hover {
+                  background: #05a759;
+            }
+
+            .cart-fab {
+                  position: fixed;
+                  bottom: 32px;
+                  right: 32px;
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 50%;
+                  background: #06c167;
+                  color: white;
+                  border: none;
+                  font-size: 28px;
+                  cursor: pointer;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                  transition: all 0.3s;
+                  z-index: 100;
+            }
+
+            .cart-fab:hover {
+                  transform: scale(1.1);
+            }
+
+            .cart-item {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 16px;
+                  border-bottom: 1px solid #e0e0e0;
+            }
+
+            .cart-item-info {
+                  flex: 1;
+            }
+
+            .cart-item-name {
+                  font-weight: 600;
+                  margin-bottom: 4px;
+            }
+
+            .cart-item-price {
+                  color: #545454;
+            }
+
+            .cart-item-controls {
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+            }
+
+            .quantity-btn {
+                  background: #f6f6f6;
+                  border: none;
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  font-size: 18px;
+                  font-weight: 600;
+                  transition: background 0.2s;
+            }
+
+            .quantity-btn:hover {
+                  background: #e0e0e0;
+            }
+
+            .cart-total {
+                  padding: 24px 16px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  font-size: 20px;
+                  font-weight: 700;
+                  border-top: 2px solid #e0e0e0;
+            }
+
+            .checkout-btn {
+                  width: 100%;
+                  padding: 16px;
+                  background: #06c167;
+                  color: white;
+                  border: none;
+                  border-radius: 8px;
+                  font-size: 18px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  transition: background 0.2s;
+            }
+
+            .checkout-btn:hover {
+                  background: #05a759;
+            }
+
+            .empty-cart {
+                  text-align: center;
+                  padding: 40px;
+            }
+
+            .empty-cart-icon {
+                  font-size: 48px;
+                  margin-bottom: 16px;
+            }
+      </style>
+</head>
+
+<body>
+      <div id="header-placeholder"></div>
+
+      <div class="restaurant-header">
+            <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+                  <div class="restaurant-info" id="restaurantInfo">
+                        <div class="restaurant-name" id="restaurantName">Chargement...</div>
+                  </div>
+            </div>
+      </div>
+
+      <div class="menus-section">
+            <h2 class="section-title">Menu</h2>
+            <div id="menusContainer"></div>
+      </div>
+
+      <button class="cart-fab" id="cartFab">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+      <div id="cartModal" class="modal">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h2 class="modal-title">Panier</h2>
+                        <button class="close-btn" id="closeCartModal">×</button>
+                  </div>
+                  <div id="cartItems"></div>
+                  <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cartTotal">0.00€</span>
+                  </div>
+                  <button class="checkout-btn" id="checkoutBtn">Commander</button>
+            </div>
+      </div>
+
+      <script src="/js/header.js"></script>
+      <script src="/js/restaurant.js"></script>
+</body>
+
+</html>
+

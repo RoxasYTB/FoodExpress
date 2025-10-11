@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Test API - FoodExpress</title>
+      <link rel="stylesheet" href="/css/common.css">
+      <style>
+            body {
+                  font-family: Arial, sans-serif;
+                  max-width: 1200px;
+                  margin: 40px auto;
+                  padding: 20px;
+            }
+
+            .test-section {
+                  margin-bottom: 30px;
+                  padding: 20px;
+                  border: 1px solid #ddd;
+                  border-radius: 8px;
+            }
+
+            h2 {
+                  color: #06c167;
+            }
+
+            button {
+                  background: #06c167;
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  margin-right: 10px;
+            }
+
+            button:hover {
+                  background: #05a759;
+            }
+
+            pre {
+                  background: #f5f5f5;
+                  padding: 15px;
+                  border-radius: 5px;
+                  overflow-x: auto;
+            }
+
+            .error {
+                  color: #ff6b7a;
+            }
+
+            .success {
+                  color: #06c167;
+            }
+      </style>
+</head>
+
+<body>
+      <div id="header-placeholder"></div>
+
+      <h1>🍕 Test API FoodExpress</h1>
+
+      <div class="test-section">
+            <h2>1. Test Connexion Serveur</h2>
+            <button onclick="testServer()">Tester</button>
+            <div id="serverResult"></div>
+      </div>
+
+      <div class="test-section">
+            <h2>2. Test Restaurants</h2>
+            <button onclick="testRestaurants()">Charger Restaurants</button>
+            <button onclick="createTestRestaurant()">Créer Restaurant Test</button>
+            <div id="restaurantsResult"></div>
+      </div>
+
+      <div class="test-section">
+            <h2>3. Test Menus</h2>
+            <button onclick="testMenus()">Charger Menus</button>
+            <div id="menusResult"></div>
+      </div>
+
+      <script>
+            const API_BASE = '/api';
+
+            async function testServer() {
+                  const resultDiv = document.getElementById('serverResult');
+                  resultDiv.innerHTML = '<p>Test en cours...</p>';
+
+                  try {
+                        const response = await fetch(API_BASE + '/restaurants');
+                        resultDiv.innerHTML = `
+                    <p class="success">✓ Serveur accessible</p>
+                    <p>Status: ${response.status}</p>
+                `;
+                  } catch (error) {
+                        resultDiv.innerHTML = `<p class="error">✗ Erreur: ${error.message}</p>`;
+                  }
+            }
+
+            async function testRestaurants() {
+                  const resultDiv = document.getElementById('restaurantsResult');
+                  resultDiv.innerHTML = '<p>Chargement...</p>';
+
+                  try {
+                        const response = await fetch(API_BASE + '/restaurants');
+                        const data = await response.json();
+
+                        resultDiv.innerHTML = `
+                    <p class="success">✓ ${data.length} restaurant(s) trouvé(s)</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                  } catch (error) {
+                        resultDiv.innerHTML = `<p class="error">✗ Erreur: ${error.message}</p>`;
+                  }
+            }
+
+            async function createTestRestaurant() {
+                  const resultDiv = document.getElementById('restaurantsResult');
+                  resultDiv.innerHTML = '<p>Création en cours...</p>';
+
+                  const token = localStorage.getItem('token');
+                  if (!token) {
+                        resultDiv.innerHTML = '<p class="error">✗ Vous devez être connecté en tant qu\'admin</p>';
+                        return;
+                  }
+
+                  try {
+                        const response = await fetch(API_BASE + '/restaurants', {
+                              method: 'POST',
+                              headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                              },
+                              body: JSON.stringify({
+                                    name: 'Restaurant Test ' + Date.now(),
+                                    address: '123 rue de Test, 75001 Paris',
+                                    phone: '0123456789',
+                                    opening_hours: '10h-22h'
+                              })
+                        });
+
+                        if (response.ok) {
+                              const data = await response.json();
+                              resultDiv.innerHTML = `
+                        <p class="success">✓ Restaurant créé !</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                              testRestaurants();
+                        } else {
+                              const error = await response.json();
+                              resultDiv.innerHTML = `<p class="error">✗ Erreur: ${JSON.stringify(error)}</p>`;
+                        }
+                  } catch (error) {
+                        resultDiv.innerHTML = `<p class="error">✗ Erreur: ${error.message}</p>`;
+                  }
+            }
+
+            async function testMenus() {
+                  const resultDiv = document.getElementById('menusResult');
+                  resultDiv.innerHTML = '<p>Chargement...</p>';
+
+                  try {
+                        const response = await fetch(API_BASE + '/menus');
+                        const data = await response.json();
+
+                        resultDiv.innerHTML = `
+                    <p class="success">✓ ${data.length} menu(s) trouvé(s)</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                  } catch (error) {
+                        resultDiv.innerHTML = `<p class="error">✗ Erreur: ${error.message}</p>`;
+                  }
+            }
+
+            window.onload = () => {
+                  testServer();
+                  testRestaurants();
+                  testMenus();
+            };
+      </script>
+      <script src="/js/header.js"></script>
+</body>
+
+</html>
