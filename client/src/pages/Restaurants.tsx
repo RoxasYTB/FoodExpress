@@ -2,10 +2,16 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import RestaurantCard from '../components/RestaurantCard';
 
-const Restaurants = () => {
-  const [restaurants, setRestaurants] = useState([]);
+interface Restaurant {
+  _id?: string;
+  name?: string;
+  cuisine?: string;
+}
+
+const Restaurants = (): JSX.Element => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRestaurants = async () => {

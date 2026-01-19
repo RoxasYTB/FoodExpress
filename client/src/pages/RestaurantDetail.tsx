@@ -2,22 +2,35 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const RestaurantDetail = () => {
-  const { id } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
-  const [menus, setMenus] = useState([]);
+interface Restaurant {
+  _id?: string;
+  name?: string;
+  address?: string;
+  phone?: string;
+  opening_hours?: string;
+}
+
+interface Menu {
+  _id?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+}
+
+const RestaurantDetail = (): JSX.Element => {
+  const { id } = useParams<{ id: string }>();
+  const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
+  const [menus, setMenus] = useState<Menu[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDetails = async () => {
       try {
         setLoading(true);
-        // Fetch restaurant details
         const restoRes = await axios.get(`/api/restaurants/${id}`);
         setRestaurant(restoRes.data);
 
-        // Fetch menus for this restaurant
         const menusRes = await axios.get(`/api/menus?restaurant_id=${id}`);
         setMenus(menusRes.data);
 
@@ -62,8 +75,7 @@ const RestaurantDetail = () => {
             className="card-meta"
             style={{ marginTop: '1rem', fontSize: '1rem' }}
           >
-            {restaurant.address} • {restaurant.phone} •{' '}
-            {restaurant.opening_hours}
+            {restaurant.address} • {restaurant.phone} • {restaurant.opening_hours}
           </p>
         </div>
       </div>
@@ -79,8 +91,7 @@ const RestaurantDetail = () => {
                 <div className="item-info">
                   <div className="item-name">{menu.name}</div>
                   <div className="item-desc">
-                    {menu.description ||
-                      'A delicious meal crafted with the finest ingredients.'}
+                    {menu.description || 'A delicious meal crafted with the finest ingredients.'}
                   </div>
                   <div className="item-price">{menu.price} €</div>
                 </div>

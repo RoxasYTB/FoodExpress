@@ -8,7 +8,7 @@ import Register from './pages/Register';
 import RestaurantDetail from './pages/RestaurantDetail';
 import Restaurants from './pages/Restaurants';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div>
       <Navbar />

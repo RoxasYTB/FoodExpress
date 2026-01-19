@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const mockOrders = [
   {
@@ -25,10 +25,16 @@ const mockOrders = [
   },
 ];
 
-const Account = () => {
-  const [user, setUser] = useState(null);
+interface User {
+  id?: string;
+  username?: string;
+  email?: string;
+}
+
+const Account: React.FC = () => {
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const token = localStorage.getItem('token');
 
@@ -59,10 +65,10 @@ const Account = () => {
     fetchMe();
   }, [token]);
 
-  const handleChange = (e) =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSave = async (e) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
     try {
@@ -106,11 +112,7 @@ const Account = () => {
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                />
+                <input name="email" value={form.email} onChange={handleChange} />
               </div>
               <div className="form-group">
                 <label>New password (leave blank to keep)</label>
@@ -136,18 +138,12 @@ const Account = () => {
                 key={o.id}
                 style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
               >
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
-                >
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div style={{ fontWeight: 700 }}>{o.date}</div>
                   <div style={{ fontWeight: 700 }}>{o.total} €</div>
                 </div>
-                <div style={{ color: '#757575', fontSize: '0.95rem' }}>
-                  {o.items.join(', ')}
-                </div>
-                <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                  Status: {o.status}
-                </div>
+                <div style={{ color: '#757575', fontSize: '0.95rem' }}>{o.items.join(', ')}</div>
+                <div style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>Status: {o.status}</div>
               </div>
             ))}
           </div>

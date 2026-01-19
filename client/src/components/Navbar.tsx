@@ -1,9 +1,10 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const location = useLocation();
 
-  const isActive = (path) => (location.pathname === path ? 'active' : '');
+  const isActive = (path: string) => (location.pathname === path ? 'active' : '');
   const token = localStorage.getItem('token');
 
   const handleLogout = () => {

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -11,20 +11,20 @@ const Register = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await axios.post('/api/users/register', formData);
       alert('Registration successful! Please login.');
       navigate('/login');
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       setError(err.response?.data?.message || 'Registration failed');
     }

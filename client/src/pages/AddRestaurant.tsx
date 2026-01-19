@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AddRestaurant = () => {
+const AddRestaurant: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -12,14 +12,14 @@ const AddRestaurant = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
 
@@ -36,7 +36,7 @@ const AddRestaurant = () => {
       });
       alert('Restaurant added successfully!');
       navigate('/restaurants');
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       if (err.response && err.response.status === 403) {
         setError('Access denied: You must be an admin.');
