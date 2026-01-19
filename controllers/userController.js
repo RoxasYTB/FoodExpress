@@ -4,7 +4,11 @@ const User = require('../models/User');
 
 const creerToken = (user) => {
   const userId = user._id || user.id;
-  return jwt.sign({ id: userId.toString(), email: user.email, role: user.role }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  return jwt.sign(
+    { id: userId.toString(), email: user.email, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '24h' },
+  );
 };
 
 exports.inscription = async (req, res) => {
@@ -73,7 +77,9 @@ exports.modifier = async (req, res) => {
   }
 
   if (updates.role && req.user.role !== 'admin') {
-    return res.status(403).json({ message: 'Seuls les admins peuvent changer les rôles' });
+    return res
+      .status(403)
+      .json({ message: 'Seuls les admins peuvent changer les rôles' });
   }
 
   const updated = await User.update(userId, updates);
@@ -90,3 +96,10 @@ exports.supprimer = async (req, res) => {
   res.json({ message: 'Utilisateur supprimé' });
 };
 
+exports.me = async (req, res) => {
+  // Return the authenticated user's data (without password)
+  const user = req.user;
+  if (!user) return res.status(401).json({ message: 'Non autorisé' });
+  const { password, _id, ...userData } = user;
+  res.json({ id: _id || user.id, ...userData });
+};

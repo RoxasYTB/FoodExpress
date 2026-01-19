@@ -7,10 +7,16 @@ const { authenticate, isOwnerOrAdmin, isAdmin } = require('../middleware/auth');
 
 router.post('/register', validate(userSchemas.register), ctrl.inscription);
 router.post('/login', validate(userSchemas.login), ctrl.connexion);
+router.get('/me', authenticate, ctrl.me);
 router.get('/', authenticate, ctrl.listerTous);
 router.get('/:id', authenticate, isOwnerOrAdmin, ctrl.obtenirUn);
-router.put('/:id', authenticate, isOwnerOrAdmin, validate(userSchemas.update), ctrl.modifier);
+router.put(
+  '/:id',
+  authenticate,
+  isOwnerOrAdmin,
+  validate(userSchemas.update),
+  ctrl.modifier,
+);
 router.delete('/:id', authenticate, isOwnerOrAdmin, ctrl.supprimer);
 
 module.exports = router;
-
